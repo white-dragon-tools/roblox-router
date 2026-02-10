@@ -99,8 +99,9 @@
     // 构建 Roblox Studio URL Scheme
     function buildStudioScheme(placeId) {
         // Roblox Studio URL Scheme 格式
-        // roblox-studio:1+launchmode:edit+task:EditPlace+placeId:<id>
-        return `roblox-studio:1+launchmode:edit+task:EditPlace+placeId:${placeId}`;
+        // 使用与 Player 类似的格式，但使用 roblox-studio 协议
+        // 参考: roblox-studio://placeId=xxx 或 roblox-studio:placeId=xxx
+        return `roblox-studio:placeId=${placeId}`;
     }
 
     // 解析 hash 路由
