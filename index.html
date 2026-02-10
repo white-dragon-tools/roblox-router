@@ -24,8 +24,8 @@
                 </div>
                 <div class="usage-card">
                     <h3>🛠️ 编辑游戏 (Studio)</h3>
-                    <code>#/studio/&lt;placeId&gt;</code>
-                    <p class="example">示例: <a href="#/studio/6900305353">#/studio/6900305353</a></p>
+                    <code>#/studio/&lt;placeId&gt;?universeId=&lt;universeId&gt;</code>
+                    <p class="example">示例: <a href="#/studio/6900305353?universeId=2414851778">#/studio/6900305353?universeId=2414851778</a></p>
                 </div>
             </div>
 
@@ -50,6 +50,11 @@
                             <td>特定服务器实例 ID</td>
                             <td>Player</td>
                         </tr>
+                        <tr>
+                            <td><code>universeId</code></td>
+                            <td>游戏的 Universe ID</td>
+                            <td>Studio</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -63,9 +68,9 @@
             
             <a id="manual-btn" href="#" class="btn">🚀 点击这里手动打开</a>
             
-            <p class="hint">如果没有自动打开，请点击上方按钮</p>
+            <a id="studio-btn" href="#" class="btn btn-studio" style="display:none;">🛠️ 在 Studio 中编辑</a>
             
-            <a href="#/" class="back-link">← 返回首页</a>
+            <p class="hint">如果没有自动打开，请点击上方按钮</p>
         </div>
 
         <!-- 错误页 -->

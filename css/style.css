@@ -213,6 +213,24 @@ h1 {
     box-shadow: 0 8px 24px rgba(233, 69, 96, 0.4);
 }
 
+.btn-studio {
+    background: linear-gradient(135deg, #0066ff, #00d9ff);
+    margin-left: 10px;
+}
+
+.btn-studio:hover {
+    box-shadow: 0 8px 24px rgba(0, 217, 255, 0.4);
+}
+
+.btn-player {
+    background: linear-gradient(135deg, #28a745, #5dd879);
+    margin-left: 10px;
+}
+
+.btn-player:hover {
+    box-shadow: 0 8px 24px rgba(40, 167, 69, 0.4);
+}
+
 .hint {
     color: var(--text-secondary);
     font-size: 0.9rem;

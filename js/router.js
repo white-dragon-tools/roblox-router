@@ -21,6 +21,7 @@
         redirectTitle: document.getElementById('redirect-title'),
         redirectInfo: document.getElementById('redirect-info'),
         manualBtn: document.getElementById('manual-btn'),
+        studioBtn: document.getElementById('studio-btn'),
         errorMessage: document.getElementById('error-message')
     };
 
@@ -44,13 +45,32 @@
     }
 
     // 显示跳转页并尝试打开 URL Scheme
-    function showRedirectPage(action, placeId, schemeUrl) {
+    function showRedirectPage(action, placeId, schemeUrl, params) {
         const actionText = action === 'play' ? 'Roblox Player' : 'Roblox Studio';
         const actionEmoji = action === 'play' ? '🎮' : '🛠️';
 
         elements.redirectTitle.textContent = `正在跳转到 ${actionText}...`;
         elements.redirectInfo.innerHTML = `${actionEmoji} Place ID: <strong>${placeId}</strong>`;
         elements.manualBtn.href = schemeUrl;
+
+        // 显示切换按钮
+        if (action === 'play') {
+            // 在 Player 页面显示 "在 Studio 中编辑" 按钮
+            let studioHash = `#/studio/${placeId}`;
+            if (params.universeId) {
+                studioHash += `?universeId=${params.universeId}`;
+            }
+            elements.studioBtn.href = studioHash;
+            elements.studioBtn.textContent = '🛠️ 在 Studio 中编辑';
+            elements.studioBtn.className = 'btn btn-studio';
+            elements.studioBtn.style.display = 'inline-block';
+        } else {
+            // 在 Studio 页面显示 "启动游戏" 按钮
+            elements.studioBtn.href = `#/play/${placeId}`;
+            elements.studioBtn.textContent = '🎮 启动游戏';
+            elements.studioBtn.className = 'btn btn-player';
+            elements.studioBtn.style.display = 'inline-block';
+        }
 
         showPage('redirect');
 
@@ -97,11 +117,14 @@
     }
 
     // 构建 Roblox Studio URL Scheme
-    function buildStudioScheme(placeId) {
+    function buildStudioScheme(placeId, universeId) {
         // Roblox Studio URL Scheme 格式
-        // 使用与 Player 类似的格式，但使用 roblox-studio 协议
-        // 参考: roblox-studio://placeId=xxx 或 roblox-studio:placeId=xxx
-        return `roblox-studio:placeId=${placeId}`;
+        // 格式: roblox-studio:1+launchmode:edit+task:EditPlace+placeId:xxx+universeId:xxx
+        let url = `roblox-studio:1+launchmode:edit+task:EditPlace+placeId:${placeId}`;
+        if (universeId) {
+            url += `+universeId:${universeId}`;
+        }
+        return url;
     }
 
     // 解析 hash 路由
@@ -145,11 +168,11 @@
         if (action === 'play') {
             schemeUrl = buildPlayerScheme(placeId, params);
         } else if (action === 'studio') {
-            schemeUrl = buildStudioScheme(placeId);
+            schemeUrl = buildStudioScheme(placeId, params.universeId);
         }
 
         // 显示跳转页
-        showRedirectPage(action, placeId, schemeUrl);
+        showRedirectPage(action, placeId, schemeUrl, params);
     }
 
     // 初始化
