@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Router - 快速跳转工具</title>
+    <link rel="icon" type="image/x-icon" href="https://cdn.foundation.roblox.com/current/RobloxStudio.ico">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 首页 -->
+        <div id="home-page" class="page hidden">
+            <div class="logo">🎮</div>
+            <h1>Roblox Router</h1>
+            <p class="subtitle">快速跳转到 Roblox Player 或 Studio</p>
+            
+            <div class="usage-section">
+                <h2>使用方法</h2>
+                <div class="usage-card">
+                    <h3>🎮 启动游戏 (Player)</h3>
+                    <code>#/play/&lt;placeId&gt;</code>
+                    <p class="example">示例: <a href="#/play/6900305353">#/play/6900305353</a></p>
+                </div>
+                <div class="usage-card">
+                    <h3>🛠️ 编辑游戏 (Studio)</h3>
+                    <code>#/studio/&lt;placeId&gt;</code>
+                    <p class="example">示例: <a href="#/studio/6900305353">#/studio/6900305353</a></p>
+                </div>
+            </div>
+
+            <div class="params-section">
+                <h2>支持的参数</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>参数</th>
+                            <th>说明</th>
+                            <th>适用</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>launchData</code></td>
+                            <td>自定义启动数据</td>
+                            <td>Player</td>
+                        </tr>
+                        <tr>
+                            <td><code>gameInstanceId</code></td>
+                            <td>特定服务器实例 ID</td>
+                            <td>Player</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 跳转页 -->
+        <div id="redirect-page" class="page hidden">
+            <div class="spinner"></div>
+            <h1 id="redirect-title">正在跳转...</h1>
+            <p id="redirect-info" class="info"></p>
+            
+            <a id="manual-btn" href="#" class="btn">🚀 点击这里手动打开</a>
+            
+            <p class="hint">如果没有自动打开，请点击上方按钮</p>
+            
+            <a href="#/" class="back-link">← 返回首页</a>
+        </div>
+
+        <!-- 错误页 -->
+        <div id="error-page" class="page hidden">
+            <div class="error-icon">❌</div>
+            <h1>链接无效</h1>
+            <p id="error-message" class="error-msg"></p>
+            <a href="#/" class="btn">← 返回首页</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>
+            <a href="https://github.com/white-dragon-tools/roblox-router" target="_blank">GitHub</a>
+            · 
+            <span>Roblox Router</span>
+        </p>
+    </footer>
+
+    <script src="js/router.js"></script>
+</body>
+</html>
